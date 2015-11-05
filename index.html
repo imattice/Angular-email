@@ -1,14 +1,42 @@
-<html>
-  <head>
-    <title>Angular Email</title>
+<html ng-app>
+    <head>
+        <title>Angular Email</title>
 
-    <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js'></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+        <!-- AngularJS -->
+        <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js'></script>
 
+        <!-- JQuery -->
+        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+
+        <script src='js/scripts.js'></script>
+
+        <link rel='stylesheet' href='css/styles.css'></link>
 
     </head>
-  <body>
-
-  </body>
+    <body ng-init="email = { from: 'John', subject:'I love angular', date: 'Jan 1'}">
+        <div class='container' style='padding=30px'>
+            <table class='table table-bordered table-condensed'>
+                <tr>
+                    <td>{{ 'Morticia' + ' ' + 'Adams' }}</td>
+                    <td>Something Spooky</td>
+                    <td>Oct 31</td>
+                </tr>
+                <tr>
+                    <td>Turkey</td>
+                    <td>Ahh!  Don't Eat Me!</td>
+                    <td>Nov 1</td>
+                </tr>
+                <tr>
+                    <td>Donald Trump</td>
+                    <td>Blah blah blah.</td>
+                    <td>Nov 2</td>
+                </tr>
+            </table>
+        </div>
+    </body>
 </html>
