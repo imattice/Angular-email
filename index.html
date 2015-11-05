@@ -1,13 +1,16 @@
-<html ng-app>
+<html ng-app
+='emailer'
+>
     <head>
         <title>Angular Email</title>
-
-        <!-- AngularJS -->
-        <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js'></script>
 
         <!-- JQuery -->
         <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
         <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+        <!-- AngularJS -->
+        <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js'></script>
+        <script src='js/Controllers/EmailController.js'></script>
 
         <!-- Bootstrap -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
@@ -17,20 +20,29 @@
 
         <link rel='stylesheet' href='css/styles.css'></link>
 
+        <script>
+            var emailer = angular.module('emailer', []);
+
+            emailer.controller('EmailController', ['$scope', function($scope) {
+                $scope.emails = [
+                    { from: 'Google', subject:'I love angular', date: 'Jan 1' },
+                    { from: 'Morticia', subject:'Something spooky', date: 'Oct 1' },
+                    { from: 'Donald Trump', subject:'Blah blah blah', date: 'Nov 2' },
+                ];
+            }
+            ]);
+        </script>
+
     </head>
-    <body ng-init="emails = [
-        { from: 'John', subject:'I love angular', date: 'Jan 1'},
-        { from: 'Morticia', subject:'Something spooky', date: 'Oct 1'},
-        { from: 'Donald Trump', subject:'Blah blah blah', date: 'Nov 2'},
-    ]">
-        <div class='container' style='padding=30px'>
+    <body ng-controller='EmailController'>
+        <div id='email_container' class='container'>
             <table class='table table-bordered table-condensed'>
                 <tr ng-repeat='email in emails'>
-                    <!-- can pull data from the ng-init to form an email -->
                     <td>{{ email.from }}</td>
                     <td>{{ email.subject }}</td>
                     <td>{{ email.date }}</td>
                 </tr>
+                <div class='mod'
             </table>
         </div>
     </body>
