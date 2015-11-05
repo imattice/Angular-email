@@ -18,24 +18,18 @@
         <link rel='stylesheet' href='css/styles.css'></link>
 
     </head>
-    <body ng-init="email = { from: 'John', subject:'I love angular', date: 'Jan 1'}">
+    <body ng-init="emails = [
+        { from: 'John', subject:'I love angular', date: 'Jan 1'},
+        { from: 'Morticia', subject:'Something spooky', date: 'Oct 1'},
+        { from: 'Donald Trump', subject:'Blah blah blah', date: 'Nov 2'},
+    ]">
         <div class='container' style='padding=30px'>
             <table class='table table-bordered table-condensed'>
-                <tr>
-                    <td>{{ 'Morticia' + ' ' + 'Adams' }}</td>
-                    <td>Something Spooky</td>
-                    <td>Oct 31</td>
-                </tr>
-                <tr>
+                <tr ng-repeat='email in emails'>
                     <!-- can pull data from the ng-init to form an email -->
                     <td>{{ email.from }}</td>
                     <td>{{ email.subject }}</td>
                     <td>{{ email.date }}</td>
-                </tr>
-                <tr>
-                    <td>Donald Trump</td>
-                    <td>Blah blah blah.</td>
-                    <td>Nov 2</td>
                 </tr>
             </table>
         </div>
