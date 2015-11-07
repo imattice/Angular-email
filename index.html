@@ -20,8 +20,9 @@
 
         <link rel='stylesheet' href='css/styles.css'></link>
     </head>
-
     <body  ng-controller='EmailController'>
+
+<!-- email table -->
         <div id='email_container' class='container'>
             <table class='table table-bordered table-condensed'>
                 <tr ng-repeat='email in emails' ng-click='showPopup(email)'>
@@ -31,7 +32,10 @@
                     <td>{{ email.date }}</td>
                 </tr>
             </table>
+            <button class='btn btn-primary' ng-click='showComposePopup()'>Compose</button>
         </div>
+
+<!-- show email -->
         <div ng-show='isPopupVisible'>
             <div class='modal-dialog'>
                 <div class='modal-content'>
@@ -56,6 +60,34 @@
 
                     <div class='modal-footer'>
                         <a href='#' class='btn btn-primary' ng-click='closePopup()'>Close</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!-- compose email -->
+        <!-- <div ng-show='isPopupVisible'> -->
+        <div ng-show='isComposePopupVisible'>
+            <div class='modal-dialog'>
+                <div class='modal-content'>
+                    <div class='modal-header'>
+                        <button type='button' class='close' ng-click='closeComposePopup()'>x</button>
+                        <h3>Compose Email</h3>
+                    </div>
+
+                    <div class='modal-body'>
+                        <form>
+                            <input id='compose_to' type='text' placeholder='To'>
+                            <br />
+                            <input id='compose_subject' type='text' placeholder='Subject'>
+                            <br />
+
+                            <textarea id='compose_body' rows='10'></textarea>
+                        </form>
+                    </div>
+                    <div class='modal-footer'>
+                        <a href='#' class='btn' ng-click='closeComposePopup()'>Close</a>
+                        <a href='#' class='btn btn-primary'>Send</a>
                     </div>
                 </div>
             </div>

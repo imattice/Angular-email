@@ -5,3 +5,7 @@
 .email_fields {
     font-weight: bold;
 }
+
+#compose_to, #compose_subject, #compose_body {
+    width: 95%;
+}
