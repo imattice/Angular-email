@@ -10,6 +10,7 @@ emailer.controller('EmailController', ['$scope', function($scope) {
 
     $scope.isPopupVisible = false;
     $scope.isComposePopupVisible = false;
+    $scope.composeEmail = {};
 
     $scope.showPopup = function (email) {
         $scope.isPopupVisible = true;
@@ -26,5 +27,9 @@ emailer.controller('EmailController', ['$scope', function($scope) {
 
     $scope.closeComposePopup = function() {
         $scope.isComposePopupVisible = false;
+    };
+
+    $scope.sendEmail = function() {
+        alert($scope.composeEmail.to + " " + $scope.composeEmail.subject + ' ' + $scope.composeEmail.body);
     };
 }]);

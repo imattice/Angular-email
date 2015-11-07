@@ -77,17 +77,18 @@
 
                     <div class='modal-body'>
                         <form>
-                            <input id='compose_to' type='text' placeholder='To'>
+                            <input id='compose_to' ng-model='composeEmail.to' type='text' placeholder='To'>
                             <br />
-                            <input id='compose_subject' type='text' placeholder='Subject'>
+                            <input id='compose_subject' ng-model='composeEmail.subject' type='text' placeholder='Subject'>
+                            <br />
                             <br />
 
-                            <textarea id='compose_body' rows='10'></textarea>
+                            <textarea id='compose_body' ng-model='composeEmail.body' rows='10'></textarea>
                         </form>
                     </div>
                     <div class='modal-footer'>
                         <a href='#' class='btn' ng-click='closeComposePopup()'>Close</a>
-                        <a href='#' class='btn btn-primary'>Send</a>
+                        <a href='#' class='btn btn-primary' ng-click='sendEmail()'>Send</a>
                     </div>
                 </div>
             </div>
