@@ -14,59 +14,51 @@
 
         <!-- Bootstrap -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+        <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script> -->
 
         <script src='js/scripts.js'></script>
 
         <link rel='stylesheet' href='css/styles.css'></link>
-
-        <script>
-            var emailer = angular.module('emailer', []);
-
-            emailer.controller('EmailController', ['$scope', function($scope) {
-                $scope.emails = [
-                    { from: 'Google', subject:'I love angular', date: 'Jan 1' },
-                    { from: 'Morticia', subject:'Something spooky', date: 'Oct 1' },
-                    { from: 'Donald Trump', subject:'Blah blah blah', date: 'Nov 2' },
-                ];
-            }
-            ]);
-        </script>
-
     </head>
-    <body ng-controller='EmailController'>
+
+    <body  ng-controller='EmailController'>
         <div id='email_container' class='container'>
             <table class='table table-bordered table-condensed'>
-                <tr ng-repeat='email in emails'>
+                <tr ng-repeat='email in emails' ng-click='showPopup(email)'>
+                    <!-- note that email is what is called in the ng-repeat and is also passed into the showPopUp function -->
                     <td>{{ email.from }}</td>
                     <td>{{ email.subject }}</td>
                     <td>{{ email.date }}</td>
                 </tr>
-                <div class='modal'>
+            </table>
+        </div>
+        <div ng-show='isPopupVisible'>
+            <div class='modal-dialog'>
+                <div class='modal-content'>
                     <div class='modal-header'>
-                        <button type='button' class='close'>x</button>
-                        <h3>Subject</h3>
+                        <button type='button' class='close' ng-click='closePopup()'>x</button>
+                        <h3>{{ selectedEmail.subject }}</h3>
                     </div>
+
                     <div class='modal-body'>
-                        From: Steve
-                        <br />
-                        Date: Jan 2
-                        <br />
-                        <br />
+                        <p>
+                            <span class='email_fields'>From:</span> {{ selectedEmail.from }}
+                            <br />
+                            <span class='email_fields'>Date:</span> {{ selectedEmail.date }}
+                            <br />
+                            <br />
+                        </p>
 
                         <p>
-                            Hey you! <br />
-                            <br />
-                            How are you doing?<br />
-                            <br />
-                            Sincerely,
-                            <br />
-                              Your friend
-                          </p>
-                      </div>
-                      <div class='modal-footer'>
-                          <a href='#' class='btn btn'
-            </table>
+                            {{ selectedEmail.body }}
+                        </p>
+                    </div>
+
+                    <div class='modal-footer'>
+                        <a href='#' class='btn btn-primary' ng-click='closePopup()'>Close</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </body>
 </html>

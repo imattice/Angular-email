@@ -1,3 +1,7 @@
 #email_container {
     padding: 30px;
 }
+
+.email_fields {
+    font-weight: bold;
+}
