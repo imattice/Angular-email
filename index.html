@@ -22,9 +22,15 @@
     </head>
     <body  ng-controller='EmailController'>
 
-<!-- email table -->
+
+<!-- inbox table -->
         <div id='email_container' class='container'>
-            <table class='table table-bordered table-condensed'>
+    <!-- nav -->
+            <ul class='nav nav-tabs'>
+                <li><a ng-click='activeTab = "inbox"'>Inbox</a></li>
+                <li><a ng-click='activeTab = "sent"'>Sent</a></li>
+            </ul>
+            <table class='table table-bordered table-condensed' ng-show='activeTab=="inbox"'>
                 <tr ng-repeat='email in emails' ng-click='showPopup(email)'>
                     <!-- note that email is what is called in the ng-repeat and is also passed into the showPopUp function -->
                     <td>{{ email.from }}</td>

@@ -11,6 +11,7 @@ emailer.controller('EmailController', ['$scope', function($scope) {
     $scope.isPopupVisible = false;
     $scope.isComposePopupVisible = false;
     $scope.composeEmail = {};
+    $scope.activeTab='inbox';
 
     $scope.showPopup = function (email) {
         $scope.isPopupVisible = true;
@@ -22,6 +23,7 @@ emailer.controller('EmailController', ['$scope', function($scope) {
     };
 
     $scope.showComposePopup = function() {
+        $scope.composeEmail = {};
         $scope.isComposePopupVisible = true;
     };
 
@@ -30,6 +32,7 @@ emailer.controller('EmailController', ['$scope', function($scope) {
     };
 
     $scope.sendEmail = function() {
+        $scope.isComposePopupVisible = false;
         alert($scope.composeEmail.to + " " + $scope.composeEmail.subject + ' ' + $scope.composeEmail.body);
     };
 }]);
