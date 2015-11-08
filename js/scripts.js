@@ -87,7 +87,7 @@ emailer.controller('EmailController', ['$scope', function($scope) {
     $scope.sendEmail = function() {
         $scope.composeEmail.date = new Date();
         $scope.composeEmail.from = 'me';
-        $scope.sentEmails.push($scope.composeEmail);
+        $scope.sentEmails.splice(0,0,$scope.composeEmail);
         $scope.isComposeEmailVisible = false;
     };
 }]);
