@@ -27,26 +27,40 @@
         <div id='email_container' class='container'>
     <!-- nav -->
             <ul class='nav nav-tabs'>
-                <li><a ng-click='activeTab = "inbox"'>Inbox</a></li>
-                <li><a ng-click='activeTab = "sent"'>Sent</a></li>
+                <li ng-class='{ active: activeTab=="inbox" }'>
+                    <a ng-click='activeTab = "inbox"'>Inbox</a>
+                </li>
+                <li ng-class='{ active: activeTab=="sent" }'>
+                    <a ng-click='activeTab = "sent"'>Sent</a>
+                </li>
             </ul>
+            <br />
+
             <table class='table table-bordered table-condensed' ng-show='activeTab=="inbox"'>
-                <tr ng-repeat='email in emails' ng-click='showPopup(email)'>
-                    <!-- note that email is what is called in the ng-repeat and is also passed into the showPopUp function -->
+                <tr ng-repeat='email in emails' ng-click='showEmail(email)'>
+                    <!-- note that email is what is called in the ng-repeat and is also passed into the showEmail function -->
                     <td>{{ email.from }}</td>
                     <td>{{ email.subject }}</td>
                     <td>{{ email.date }}</td>
                 </tr>
             </table>
-            <button class='btn btn-primary' ng-click='showComposePopup()'>Compose</button>
+            <table class='table table-bordered table-condensed' ng-show='activeTab=="sent"'>
+                <tr ng-repeat='email in sentEmails' ng-click='showEmail(email)'>
+                    <!-- note that email is what is called in the ng-repeat and is also passed into the showEmail function -->
+                    <td>{{ email.from }}</td>
+                    <td>{{ email.subject }}</td>
+                    <td>{{ email.date | date: 'MMM d' }}</td>
+                </tr>
+            </table>
+            <button class='btn btn-primary' ng-click='showComposeEmail()'>Compose</button>
         </div>
 
 <!-- show email -->
-        <div ng-show='isPopupVisible'>
+        <div ng-show='isEmailVisible'>
             <div class='modal-dialog'>
                 <div class='modal-content'>
                     <div class='modal-header'>
-                        <button type='button' class='close' ng-click='closePopup()'>x</button>
+                        <button type='button' class='close' ng-click='closeEmail()'>x</button>
                         <h3>{{ selectedEmail.subject }}</h3>
                     </div>
 
@@ -54,7 +68,7 @@
                         <p>
                             <span class='email_fields'>From:</span> {{ selectedEmail.from }}
                             <br />
-                            <span class='email_fields'>Date:</span> {{ selectedEmail.date }}
+                            <span class='email_fields'>Date:</span> {{ selectedEmail.date | date: 'MMM d' }}
                             <br />
                             <br />
                         </p>
@@ -65,19 +79,21 @@
                     </div>
 
                     <div class='modal-footer'>
-                        <a href='#' class='btn btn-primary' ng-click='closePopup()'>Close</a>
+                        <a href='#' class='btn' ng-click='forward()'>Forward</a>
+                        <a href='#' class='btn' ng-click='reply()'>Reply</a>
+                        <a href='#' class='btn btn-primary' ng-click='closeEmail()'>Close</a>
                     </div>
                 </div>
             </div>
         </div>
 
 <!-- compose email -->
-        <!-- <div ng-show='isPopupVisible'> -->
-        <div ng-show='isComposePopupVisible'>
+        <!-- <div ng-show='isEmailVisible'> -->
+        <div ng-show='isComposeEmailVisible'>
             <div class='modal-dialog'>
                 <div class='modal-content'>
                     <div class='modal-header'>
-                        <button type='button' class='close' ng-click='closeComposePopup()'>x</button>
+                        <button type='button' class='close' ng-click='closeComposeEmail()'>x</button>
                         <h3>Compose Email</h3>
                     </div>
 
@@ -93,7 +109,7 @@
                         </form>
                     </div>
                     <div class='modal-footer'>
-                        <a href='#' class='btn' ng-click='closeComposePopup()'>Close</a>
+                        <a href='#' class='btn' ng-click='closeComposeEmail()'>Close</a>
                         <a href='#' class='btn btn-primary' ng-click='sendEmail()'>Send</a>
                     </div>
                 </div>
